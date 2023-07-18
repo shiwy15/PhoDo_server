@@ -28,7 +28,8 @@ const { MongoClient } = require('mongodb');
 
 // CORS 옵션 설정
 const corsOptions = {
-	origin:  ['https://www.phodo.store', 'https://jungle-front-f14999pts-jinkyojb.vercel.app/'], // 클라이언트 도메인을 명시적으로 지정하면 보안 상의 이유로 해당 도메인만 요청 허용 가능
+  origin: 'http://localhost:3000',
+	// origin:  ['https://www.phodo.store', 'https://jungle-front-f14999pts-jinkyojb.vercel.app/'], // 클라이언트 도메인을 명시적으로 지정하면 보안 상의 이유로 해당 도메인만 요청 허용 가능
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders:  [
     "Content-Type",
@@ -110,10 +111,12 @@ app.use(
     saveUninitialized: false,
     resave: false,
     cookie: {
-      // sameSite: 'lax',
-      // secure: false,
-      sameSite: 'none',
-      secure: true,
+      // local에서 돌릴 때!
+      sameSite: 'lax',
+      secure: false,
+      // 서버올릴 때!
+      // sameSite: 'none',
+      // secure: true,
       httpOnly: true,
       maxAge : (4 * 60 * 60 * 1000)
     },
